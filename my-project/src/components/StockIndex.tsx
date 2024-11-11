@@ -14,7 +14,7 @@ const StockIndex: React.FC = () => {
   ];
 
   return (
-    <section className="mt-56 max-lg:mt-40 max-md:mt-32 max-sm:mt-20 w-full max-w-[992px] max-lg:max-w-[800px] max-md:max-w-[600px] max-sm:max-w-[95%] mx-auto">
+    <section id="stock" className="mt-56 max-lg:mt-40 max-md:mt-32 max-sm:mt-20 w-full max-w-[992px] max-lg:max-w-[800px] max-md:max-w-[600px] max-sm:max-w-[95%] mx-auto">
       <h2
         data-layername="股票指數"
         className="text-6xl max-lg:text-5xl max-md:text-4xl max-sm:text-3xl font-medium text-center text-white whitespace-nowrap"

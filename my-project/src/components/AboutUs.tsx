@@ -3,6 +3,7 @@ import React from 'react';
 const AboutUs: React.FC = () => {
   return (
     <section 
+      id="about"
       data-layername="關於我們" 
       // 增加顶部间距，减少底部间距
       className="flex flex-col mt-60 max-lg:mt-28 max-md:mt-24 max-sm:mt-20 w-full text-white max-w-[1140px] max-lg:max-w-[900px] max-md:max-w-[700px] max-sm:max-w-[95%] mx-auto"

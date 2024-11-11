@@ -1,53 +1,86 @@
-import React from "react";
+"use client"
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 
-interface NewsItemProps {
+interface NewsData {
+  flashNewsGuid: string;
+  flashNewsLink: string;
+  generateDate: string;
+  id: number;
+  language: string;
+  pubDate: string;
+  slug: string;
+  sourceId: number;
+  status: string;
+  summary: string;
   title: string;
-  content: string;
 }
 
-const NewsItem: React.FC<NewsItemProps> = ({ title, content }) => (
-  <div className="flex flex-col justify-center self-stretch py-10 max-lg:py-8 max-md:py-6 max-sm:py-4 px-10 max-lg:px-8 max-md:px-6 max-sm:px-4 my-auto rounded-3xl border border-solid bg-slate-900 bg-opacity-50 border-white border-opacity-0 shadow-[0px_0px_100px_rgba(20,15,42,1)] w-[700px] max-lg:w-[600px] max-md:w-full max-sm:w-full">
-    <div className="flex flex-col w-full">
-      <h3 
-        data-layername={title} 
-        className="text-4xl max-lg:text-3xl max-md:text-2xl max-sm:text-xl font-medium"
-      >
-        {title}
-      </h3>
-      <p 
-        data-layername={content} 
-        className="mt-5 max-lg:mt-4 max-md:mt-3 max-sm:mt-2 text-xl max-lg:text-lg max-md:text-base max-sm:text-sm"
-      >
-        {content}
-      </p>
-    </div>
-  </div>
-);
+const MotionArticle = motion.article;
+
 const News: React.FC = () => {
-  const newsItems: NewsItemProps[] = [
-    {
-      title: "以太坊巨鲸在价格下跌中出售1500枚ETH",
-      content:
-        "根据Ai 姨的消息，钱包地址0x2ab...3727e在三小时前清仓了1500枚ETH，这些ETH最初以平均价格$2182购买。此批ETH价值371万美元，充值价格为$2480。如果全部卖出，将获利44.6万美元。过去一周，ETH价格下跌了6.39%，在今年的价格峰值时，这1500枚ETH曾有282万美元的浮盈。",
-    },
-    {
-      title: "Vitalik Buterin 强调使用 RISC-V 的 EVM 验证路线图",
-      content:
-        "根据 VitalikButerin 的说法，当前的有效性证明形式验证路线图的一个重要部分是使用 RISC-V 架构创建以太坊虚拟机 (EVM) 的验证实现。他建议 AFDudley0 应该与可能参与该路线图的 Alexander L. Hicks 讨论这个话题。这一发展对于确保以太坊智能合约的可靠性和安全性至关重要，可能会影响以太坊在加密市场中的价值和可用性。",
-    },
-    {
-      title: "本周影响比特币的关键经济数据事件",
-      content:
-        "根据GreeksLive，本周对比特币投资者来说至关重要，因为有重大的宏观经济事件。重点是周五的非农就业数据和失业率数据，这是选举前最后的重要经济指标。这些数据的发布可能会影响比特币的价格走势，因为它们可能影响市场情绪和货币政策预期。",
-    },
-  ];
+  const [news, setNews] = useState<NewsData[]>([]);
+  const [page, setPage] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const fetchNews = useCallback(async () => {
+    setLoading(true);
+    try {
+      const response = await fetch(
+        "https://tradingwithaiservice-f0drbtcthje3chbp.eastasia-01.azurewebsites.net/api/flashnews?language=zh"
+      );
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const data: NewsData[] = await response.json();
+      const newData = data.slice(page * 30, (page + 1) * 30);
+      setNews(prevNews => {
+        const existingIds = new Set(prevNews.map(item => item.id));
+        const uniqueNewData = newData.filter(item => !existingIds.has(item.id) && item.language === 'zh');
+        return [...prevNews, ...uniqueNewData];
+      });
+    } catch (error) {
+      console.error("Error fetching news:", error);
+    } finally {
+      setLoading(false);
+    }
+  }, [page]);
+
+  useEffect(() => {
+    fetchNews();
+  }, [fetchNews]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!loading && containerRef.current) {
+        const { scrollTop, scrollHeight, clientHeight } = containerRef.current;
+        if (scrollTop + clientHeight >= scrollHeight - 100) {
+          setPage(prevPage => prevPage + 1);
+        }
+      }
+    };
+
+    const container = containerRef.current;
+    if (container) {
+      container.addEventListener("scroll", handleScroll);
+    }
+    return () => {
+      if (container) {
+        container.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, [loading]);
 
   return (
     <section
+      id="news"
       data-layername="testimonials"
       className="flex flex-col items-center px-4 mt-96 max-lg:mt-72 max-md:mt-48 max-sm:mt-24 w-full text-center text-white relative"
     >
-      {/* 背景图片 - 调整 translate-y 值让图片往下移 */}
+      {/* 背景图片 */}
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 translate-y-1/5 w-full max-w-[1800px] z-0">
         <img
           src="/map.svg"
@@ -57,7 +90,7 @@ const News: React.FC = () => {
         />
       </div>
 
-      {/* 内容层 - 添加 z-10 确保在背景之上 */}
+      {/* 内容层 */}
       <h2
         data-layername="最新新闻"
         className="text-6xl max-lg:text-5xl max-md:text-4xl max-sm:text-3xl font-medium relative z-10"
@@ -66,14 +99,92 @@ const News: React.FC = () => {
       </h2>
       
       <div className="w-full max-w-[2200px] mx-auto px-4 overflow-hidden relative z-10">
-        <div className="flex gap-5 items-stretch justify-center mt-32 max-lg:mt-24 max-md:mt-16 max-sm:mt-12 w-full overflow-x-auto max-md:flex-col">
-          <div className="inline-flex gap-5 px-4 min-w-min max-md:flex max-md:flex-col">
-            {newsItems.map((item, index) => (
-              <NewsItem key={index} {...item} />
-            ))}
-          </div>
+        <div 
+          ref={containerRef}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mt-32 max-lg:mt-24 max-md:mt-16 max-sm:mt-12 max-h-[800px] overflow-y-auto pr-2 sm:pr-4 styled-scrollbar"
+        >
+          {news.map((item, index) => (
+            <MotionArticle
+              key={`${item.id}-${index}`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="group"
+            >
+              <div className="flex flex-col justify-center py-10 max-lg:py-8 max-md:py-6 max-sm:py-4 px-10 max-lg:px-8 max-md:px-6 max-sm:px-4 rounded-3xl bg-slate-900 bg-opacity-50 shadow-[0px_0px_100px_rgba(20,15,42,1)] hover:bg-opacity-60 transition-all duration-300">
+                {/* 日期标签 */}
+                <div className="flex justify-end mb-3">
+                  <span className="text-xs text-blue-300 bg-blue-500/10 px-2 py-1 rounded-full">
+                    {new Date(item.pubDate).toLocaleDateString('zh-CN', {
+                      month: 'short',
+                      day: 'numeric'
+                    })}
+                  </span>
+                </div>
+
+                <h3 className="text-4xl max-lg:text-3xl max-md:text-2xl max-sm:text-xl font-medium mb-4">
+                  {item.title}
+                </h3>
+                
+                <p className="mt-5 max-lg:mt-4 max-md:mt-3 max-sm:mt-2 text-xl max-lg:text-lg max-md:text-base max-sm:text-sm line-clamp-3">
+                  {item.summary}
+                </p>
+
+                <a
+                  href={item.flashNewsLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors duration-300"
+                >
+                  <span className="relative">
+                    了解更多
+                    <span className="absolute bottom-0 left-0 w-0 h-px bg-blue-400 group-hover:w-full transition-all duration-300"></span>
+                  </span>
+                  <svg
+                    className="w-4 h-4 ml-2 transform transition-transform duration-200 group-hover:translate-x-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M14 5l7 7m0 0l-7 7m7-7H3"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </MotionArticle>
+          ))}
         </div>
+
+        {loading && (
+          <div className="flex justify-center mt-8">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
+          </div>
+        )}
       </div>
+
+      <style jsx global>{`
+        .styled-scrollbar::-webkit-scrollbar {
+          width: 4px;
+          @media (min-width: 640px) {
+            width: 6px;
+          }
+        }
+        .styled-scrollbar::-webkit-scrollbar-track {
+          background: rgba(59, 130, 246, 0.1);
+          border-radius: 3px;
+        }
+        .styled-scrollbar::-webkit-scrollbar-thumb {
+          background: rgba(59, 130, 246, 0.3);
+          border-radius: 3px;
+        }
+        .styled-scrollbar::-webkit-scrollbar-thumb:hover {
+          background: rgba(59, 130, 246, 0.5);
+        }
+      `}</style>
     </section>
   );
 };

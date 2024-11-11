@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="relative flex flex-col w-full min-h-[898px] max-lg:min-h-[800px] max-md:min-h-[700px] max-sm:min-h-[600px] px-8 max-lg:px-6 max-md:px-4 max-sm:px-3 pt-52 max-lg:pt-40 max-md:pt-32 max-sm:pt-24 pb-[463px] max-lg:pb-[400px] max-md:pb-[300px] max-sm:pb-[200px] mt-64 max-lg:mt-48 max-md:mt-32 max-sm:mt-24">
+    <footer className="relative flex flex-col w-full min-h-[1200px] max-lg:min-h-[1000px] max-md:min-h-[800px] max-sm:min-h-[700px] px-8 max-lg:px-6 max-md:px-4 max-sm:px-3 pt-52 max-lg:pt-40 max-md:pt-32 max-sm:pt-24 pb-0 mt-96 max-lg:mt-72 max-md:mt-48 max-sm:mt-32">
       <img
         loading="lazy"
         src="https://cdn.builder.io/api/v1/image/assets/TEMP/c26ea3463d22b20b405f75f19dc6a78780219df7acb199b550a95e8a8b0d067e?placeholderIfAbsent=true&apiKey=63de7e29674842c29a93babaf5f1d67a"
@@ -10,7 +10,6 @@ const Footer: React.FC = () => {
         alt=""
       />
 
-      
       <div className="relative flex flex-wrap justify-between w-full max-w-[1200px] max-lg:max-w-[900px] max-md:max-w-[700px] max-sm:max-w-[95%] mx-auto gap-10 max-md:gap-8 max-sm:gap-6">
         {/* Logo Section */}
         <div className="w-[220px] max-sm:w-full">

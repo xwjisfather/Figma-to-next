@@ -3,6 +3,7 @@ import React from "react";
 const Services: React.FC = () => {
   return (
     <section
+      id="fund"
       data-layername="services"
       className="flex flex-col mt-24 text-6xl max-lg:text-5xl max-md:text-4xl max-sm:text-3xl font-medium text-center text-white whitespace-nowrap"
     >

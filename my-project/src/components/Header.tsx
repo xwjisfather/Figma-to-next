@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -9,11 +9,29 @@ const Header: React.FC = () => {
   };
 
   const navItems = [
-    { label: "關於我們", href: "#about" },
+    { label: "股票指数", href: "#stock" },
     { label: "智富匯基金", href: "#fund" },
-    { label: "訂閱計畫", href: "#subscription" },
+    { label: "關於我們", href: "#about" },
     { label: "新聞", href: "#news" },
+    { label: "訂閱計畫", href: "#subscription" },
+    { label: "聊天机器人", href: "#chatbot" },
   ];
+
+  // 添加滚动功能
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const headerHeight = 200;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+      setIsMenuOpen(false);
+    }
+  };
 
   return (
     <header className="relative w-full h-[200px] max-lg:h-[180px] max-md:h-[160px] max-sm:h-[140px] flex items-center">
@@ -43,8 +61,8 @@ const Header: React.FC = () => {
           {navItems.map((item, index) => (
             <a
               key={index}
-              href={item.href}
-              className="text-white/90 hover:text-white transition-colors duration-200 text-2xl max-lg:text-xl font-medium"
+              onClick={() => scrollToSection(item.href.replace('#', ''))}
+              className="text-white/90 hover:text-white transition-colors duration-200 text-2xl max-lg:text-xl font-medium cursor-pointer"
             >
               {item.label}
             </a>
@@ -54,7 +72,7 @@ const Header: React.FC = () => {
         {/* 汉堡菜单按钮 */}
         <button 
           onClick={toggleMenu}
-          className="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-lg hover:bg-white/10 transition-colors duration-200"
+          className="md:hidden flex-col justify-center items-center w-10 h-10 rounded-lg hover:bg-white/10 transition-colors duration-200"
           aria-label="Toggle menu"
         >
           <div className={`w-6 h-0.5 bg-white transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`} />
@@ -78,9 +96,8 @@ const Header: React.FC = () => {
             {navItems.map((item, index) => (
               <a
                 key={index}
-                href={item.href}
-                onClick={() => setIsMenuOpen(false)}
-                className="px-8 py-4 text-lg text-white/90 hover:text-white hover:bg-white/10 transition-all duration-200 border-b border-white/10 last:border-b-0"
+                onClick={() => scrollToSection(item.href.replace('#', ''))}
+                className="px-8 py-4 text-lg text-white/90 hover:text-white hover:bg-white/10 transition-all duration-200 border-b border-white/10 last:border-b-0 cursor-pointer"
               >
                 {item.label}
               </a>

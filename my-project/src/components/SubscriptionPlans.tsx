@@ -49,18 +49,19 @@ const SubscriptionPlans: React.FC = () => {
     { 
       price: "155HK$/月", 
       duration: "30日",
-      icon: "/layer.svg",
+      icon: "/rocket.svg",
       position: 'bottom'
     },
     { 
       price: "400HK$/季度", 
       duration: "90日",
-      icon: "/rocket.svg",
+      icon: "/helix.svg",
       position: 'right'
     }
   ];
 
   return (
+    <section id="subscription">
     <div className="flex flex-col items-center w-full max-w-[1200px] mx-auto mt-32 px-4">
       <h2 className="text-6xl max-lg:text-5xl max-md:text-4xl max-sm:text-3xl font-medium text-white mb-32">
         訂閱計畫
@@ -119,6 +120,7 @@ const SubscriptionPlans: React.FC = () => {
         </div>
       </div>
     </div>
+    </section>
   );
 };
 

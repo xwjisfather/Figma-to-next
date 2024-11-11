@@ -2,6 +2,7 @@
 import React from "react";
 
 const Hero: React.FC = () => {
+
   return (
     <section className="flex relative flex-col self-stretch pb-2 w-full min-h-[525px] max-md:min-h-[400px] max-sm:min-h-[300px]">
       <div className="flex relative flex-col w-full min-h-[517px] max-md:min-h-[392px] max-sm:min-h-[292px]">
@@ -20,19 +21,16 @@ const Hero: React.FC = () => {
           <span className="font-semibold">technology</span>
         </h1>
 
-        {/* 箭头和圆形容器 */}
-
+        {/* 箭头 */}
         <div className="absolute left-1/2 transform -translate-x-1/2 top-[420px] max-md:top-[325px] max-sm:top-[230px]">
-            <img
-              loading="lazy"
-              src="/arrow.svg"
-              className="w-[60px] h-[60px] max-md:w-[35px] max-md:h-[35px] max-sm:w-[30px] max-sm:h-[30px] object-contain relative z-[2]"
-              alt="Scroll down indicator"
-            />
-
+          <img
+            loading="lazy"
+            src="/arrow.svg"
+            className="relative z-[2] w-[60px] h-[60px] max-md:w-[35px] max-md:h-[35px] max-sm:w-[30px] max-sm:h-[30px] object-contain"
+            alt="Scroll down indicator"
+          />
         </div>
-    </div>
-
+      </div>
     </section>
   );
 };

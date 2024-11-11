@@ -19,11 +19,11 @@ const LandingPage: React.FC = () => {
       <Header />
       <Hero />
       <StockIndex />
-      <SubscriptionPlans />
       <Services />
       <AboutUs />
       <News />
       <FAQ />
+      <SubscriptionPlans />
       <Footer />
     </main>
   );

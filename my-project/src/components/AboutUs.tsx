@@ -4,7 +4,8 @@ const AboutUs: React.FC = () => {
   return (
     <section 
       data-layername="關於我們" 
-      className="flex flex-col mt-14 max-lg:mt-12 max-md:mt-10 max-sm:mt-8 w-full text-white max-w-[1140px] max-lg:max-w-[900px] max-md:max-w-[700px] max-sm:max-w-[95%] min-h-[635px] max-lg:min-h-[580px] max-md:min-h-[520px] max-sm:min-h-[450px] mx-auto"
+      // 增加顶部间距，减少底部间距
+      className="flex flex-col mt-60 max-lg:mt-28 max-md:mt-24 max-sm:mt-20 w-full text-white max-w-[1140px] max-lg:max-w-[900px] max-md:max-w-[700px] max-sm:max-w-[95%] mx-auto"
     >
       <h2 
         data-layername="關於我們" 
@@ -14,7 +15,8 @@ const AboutUs: React.FC = () => {
       </h2>
       
       <div 
-        className="flex flex-col mt-24 max-lg:mt-20 max-md:mt-16 max-sm:mt-12 w-full min-h-[448px] max-lg:min-h-[400px] max-md:min-h-[350px] max-sm:min-h-[300px]"
+        // 减少最小高度约束
+        className="flex flex-col mt-24 max-lg:mt-20 max-md:mt-16 max-sm:mt-12 w-full min-h-[400px] max-lg:min-h-[350px] max-md:min-h-[300px] max-sm:min-h-[250px]"
       >
         <div 
           className="flex flex-col w-full rounded-3xl"

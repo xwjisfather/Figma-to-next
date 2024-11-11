@@ -23,7 +23,6 @@ const NewsItem: React.FC<NewsItemProps> = ({ title, content }) => (
     </div>
   </div>
 );
-
 const News: React.FC = () => {
   const newsItems: NewsItemProps[] = [
     {
@@ -46,18 +45,34 @@ const News: React.FC = () => {
   return (
     <section
       data-layername="testimonials"
-      className="flex flex-col self-stretch mt-96 max-lg:mt-72 max-md:mt-48 max-sm:mt-24 w-full text-center text-white"
+      className="flex flex-col items-center px-4 mt-96 max-lg:mt-72 max-md:mt-48 max-sm:mt-24 w-full text-center text-white relative"
     >
+      {/* 背景图片 - 调整 translate-y 值让图片往下移 */}
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 translate-y-1/5 w-full max-w-[1800px] z-0">
+        <img
+          src="/map.svg"
+          className="w-full h-full object-contain opacity-50"
+          alt="Background map"
+          loading="lazy"
+        />
+      </div>
+
+      {/* 内容层 - 添加 z-10 确保在背景之上 */}
       <h2
         data-layername="最新新闻"
-        className="self-center max-w-full text-6xl max-lg:text-5xl max-md:text-4xl max-sm:text-3xl font-medium whitespace-nowrap w-[693px] max-lg:w-[600px] max-md:w-[500px] max-sm:w-[95%]"
+        className="text-6xl max-lg:text-5xl max-md:text-4xl max-sm:text-3xl font-medium relative z-10"
       >
         最新新闻
       </h2>
-      <div className="flex gap-5 items-center mt-32 max-lg:mt-24 max-md:mt-16 max-sm:mt-12 w-full overflow-x-auto max-md:flex-col">
-        {newsItems.map((item, index) => (
-          <NewsItem key={index} {...item} />
-        ))}
+      
+      <div className="w-full max-w-[2200px] mx-auto px-4 overflow-hidden relative z-10">
+        <div className="flex gap-5 items-stretch justify-center mt-32 max-lg:mt-24 max-md:mt-16 max-sm:mt-12 w-full overflow-x-auto max-md:flex-col">
+          <div className="inline-flex gap-5 px-4 min-w-min max-md:flex max-md:flex-col">
+            {newsItems.map((item, index) => (
+              <NewsItem key={index} {...item} />
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

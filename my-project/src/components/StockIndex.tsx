@@ -21,38 +21,41 @@ const StockIndex: React.FC = () => {
       >
         股票指數
       </h2>
-      <div className="flex flex-wrap justify-center items-center mt-20 max-lg:mt-16 max-md:mt-12 max-sm:mt-8 w-full text-center rounded-3xl">
-        {stockData.map((stock, index) => (
-          <div
-            key={stock.name}
-            className={`flex flex-wrap grow shrink gap-7 max-md:gap-5 max-sm:gap-3 self-stretch px-6 max-md:px-4 max-sm:px-3 py-4 my-auto whitespace-nowrap rounded-3xl min-h-[216px] max-lg:min-h-[180px] max-md:min-h-[150px] max-sm:min-h-[120px] min-w-[240px] w-[400px] max-lg:w-[350px] max-md:w-[300px] max-sm:w-full ${
-              index === 0 ? "border-r border-white max-sm:border-r-0 max-sm:border-b max-sm:pb-6 max-sm:mb-6" : ""
-            }`}
-          >
+      {/* 添加紫色背景容器 */}
+      <div className="mt-20 max-lg:mt-16 max-md:mt-12 max-sm:mt-8 bg-[#2D1B69]/30 backdrop-blur-sm rounded-3xl p-8 max-lg:p-6 max-md:p-4">
+        <div className="flex flex-wrap justify-center items-center w-full text-center">
+          {stockData.map((stock, index) => (
             <div
-              data-layername={stock.name}
-              className="my-auto text-8xl max-lg:text-7xl max-md:text-6xl max-sm:text-5xl font-medium text-white w-[252px] max-lg:w-[220px] max-md:w-[180px] max-sm:w-[150px]"
+              key={stock.name}
+              className={`flex flex-wrap grow shrink gap-7 max-md:gap-5 max-sm:gap-3 self-stretch px-6 max-md:px-4 max-sm:px-3 py-4 my-auto whitespace-nowrap min-h-[216px] max-lg:min-h-[180px] max-md:min-h-[150px] max-sm:min-h-[120px] min-w-[240px] w-[400px] max-lg:w-[350px] max-md:w-[300px] max-sm:w-full ${
+                index === 0 ? "border-r border-white/20 max-sm:border-r-0 max-sm:border-b max-sm:pb-6 max-sm:mb-6" : ""
+              }`}
             >
-              {stock.name}
-            </div>
-            <div className="flex flex-col flex-1 shrink justify-center items-start basis-0">
               <div
-                data-layername={stock.change}
-                className={`text-4xl max-lg:text-3xl max-md:text-2xl max-sm:text-xl font-medium leading-none ${
-                  stock.isPositive ? "text-green-500" : "text-red-600"
-                }`}
+                data-layername={stock.name}
+                className="my-auto text-8xl max-lg:text-7xl max-md:text-6xl max-sm:text-5xl font-medium text-white w-[252px] max-lg:w-[220px] max-md:w-[180px] max-sm:w-[150px]"
               >
-                {stock.change}
+                {stock.name}
               </div>
-              <div
-                data-layername={stock.value}
-                className="mt-5 max-md:mt-4 max-sm:mt-3 text-2xl max-lg:text-xl max-md:text-lg max-sm:text-base text-white"
-              >
-                {stock.value}
+              <div className="flex flex-col flex-1 shrink justify-center items-start basis-0">
+                <div
+                  data-layername={stock.change}
+                  className={`text-4xl max-lg:text-3xl max-md:text-2xl max-sm:text-xl font-medium leading-none ${
+                    stock.isPositive ? "text-green-500" : "text-red-600"
+                  }`}
+                >
+                  {stock.change}
+                </div>
+                <div
+                  data-layername={stock.value}
+                  className="mt-5 max-md:mt-4 max-sm:mt-3 text-2xl max-lg:text-xl max-md:text-lg max-sm:text-base text-white"
+                >
+                  {stock.value}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );

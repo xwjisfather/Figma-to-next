@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 
 const Hero: React.FC = () => {
@@ -20,17 +21,18 @@ const Hero: React.FC = () => {
         </h1>
 
         {/* 箭头和圆形容器 */}
+
         <div className="absolute left-1/2 transform -translate-x-1/2 top-[420px] max-md:top-[325px] max-sm:top-[230px]">
-          <div className="w-[60px] h-[60px] max-md:w-[50px] max-md:h-[50px] max-sm:w-[40px] max-sm:h-[40px] rounded-full bg-gradient-to-b from-[#8B5CF6]/50 to-[#6C22BD]/50 flex items-center justify-center backdrop-blur-sm">
             <img
               loading="lazy"
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/759d1391f00759a2b7e844a0b174899f9c44cdc1b0ad7a82899231630173f4a3"
-              className="w-[26px] h-[26px] max-md:w-[22px] max-md:h-[22px] max-sm:w-[18px] max-sm:h-[18px] object-contain"
+              src="/arrow.svg"
+              className="w-[60px] h-[60px] max-md:w-[35px] max-md:h-[35px] max-sm:w-[30px] max-sm:h-[30px] object-contain relative z-[2]"
               alt="Scroll down indicator"
             />
-          </div>
+
         </div>
-      </div>
+    </div>
+
     </section>
   );
 };

@@ -9,6 +9,7 @@ const Footer: React.FC = () => {
         className="object-cover absolute inset-0 size-full"
         alt=""
       />
+
       
       <div className="relative flex flex-wrap justify-between w-full max-w-[1200px] max-lg:max-w-[900px] max-md:max-w-[700px] max-sm:max-w-[95%] mx-auto gap-10 max-md:gap-8 max-sm:gap-6">
         {/* Logo Section */}

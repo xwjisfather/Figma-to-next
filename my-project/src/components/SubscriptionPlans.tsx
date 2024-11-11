@@ -21,16 +21,17 @@ const PlanCard: React.FC<PlanProps> = ({ price, duration, icon, position }) => (
     <div className="absolute -top-1 -right-1 w-2 h-2 bg-white/30 rounded-full" />
     <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-white/30 rounded-full" />
     
-    {/* 圆形图标 */}
-    <div className="absolute -top-8">
-      <div className="w-16 h-16 max-lg:w-14 max-lg:h-14 max-md:w-12 max-md:h-12 max-sm:w-10 max-sm:h-10 
-        rounded-full bg-[#8B5CF6] flex items-center justify-center shadow-[0_0_20px_rgba(139,92,246,0.5)]">
-        <img src={icon} className="w-8 h-8 max-lg:w-7 max-lg:h-7 max-md:w-6 max-md:h-6 max-sm:w-5 max-sm:h-5" alt="" />
-      </div>
+    {/* 图标 - 增大尺寸 */}
+    <div className="absolute -top-12">
+      <img 
+        src={icon} 
+        className="w-16 h-16 max-lg:w-14 max-lg:h-14 max-md:w-12 max-md:h-12 max-sm:w-10 max-sm:h-10" 
+        alt="" 
+      />
     </div>
 
     {/* 内容 */}
-    <div className="relative mt-4 z-10">  {/* 移除 mt-10 */}
+    <div className="relative mt-4 z-10">
       <div className="text-4xl max-lg:text-3xl max-md:text-2xl max-sm:text-xl font-medium mb-4">{price}</div>
       <div className="text-xl max-lg:text-lg max-md:text-base max-sm:text-sm text-white/80">{duration}</div>
     </div>
@@ -42,19 +43,19 @@ const SubscriptionPlans: React.FC = () => {
     { 
       price: "1700HK$/年", 
       duration: "365日",
-      icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/88c0f19bcb03c04b67d7c80cca531dc1ee8703c87976997df44e56e3f5d7017a",
+      icon: "/bulb.svg",
       position: 'left'
     },
     { 
       price: "155HK$/月", 
       duration: "30日",
-      icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/82d4cac4a12b78339ff4028e220b9b687b68bb2fbd5677e2cdfd92b7f0984ba9",
+      icon: "/layer.svg",
       position: 'bottom'
     },
     { 
       price: "400HK$/季度", 
       duration: "90日",
-      icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/e3cbab3e5743b2455c14aaad1d39ea026efd0e70044d0402fa842733236e915d",
+      icon: "/rocket.svg",
       position: 'right'
     }
   ];
@@ -67,53 +68,42 @@ const SubscriptionPlans: React.FC = () => {
 
       {/* 整体连接线布局容器 */}
       <div className="relative w-full">
-        {/* 中心图标和圆环 */}
+        {/* 中心图标 - 移除圆环，增大图标 */}
         <div className="relative flex justify-center mb-24">
           <div className="relative">
-            {/* 发光圆环 */}
-            <div className="absolute -inset-6">
-              <div className="w-32 h-32 rounded-full border-2 border-white/30
-                shadow-[0_0_20px_rgba(255,255,255,0.2)]" />
-              <div className="absolute inset-[4px] rounded-full border border-white/20" />
-              <div className="absolute inset-[8px] rounded-full border border-white/10" />
-            </div>
-
-            {/* 中心图标 */}
-            <div className="relative w-20 h-20 rounded-full bg-[#8B5CF6] flex items-center justify-center
-              shadow-[0_0_30px_rgba(139,92,246,0.5)]">
-              <img 
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/82d4cac4a12b78339ff4028e220b9b687b68bb2fbd5677e2cdfd92b7f0984ba9"
-                className="w-10 h-10 object-contain"
-                alt=""
-              />
-            </div>
+            <img 
+              src="/layer.svg"
+              className="w-20 h-20 max-lg:w-16 max-lg:h-16 max-md:w-14 max-md:h-14 max-sm:w-12 max-sm:h-12"
+              alt=""
+            />
           </div>
         </div>
-{/* 连接线 */}
-<div className="absolute top-20 left-0 w-full h-full">
-  {/* 左侧弧形连接线 */}
-  <div className="absolute left-[20%] top-10 w-[30%] h-[100px]
-    border-t-2 border-l-2 rounded-tl-[50px] border-white/30" />
 
-  {/* 右侧弧形连接线 */}
-  <div className="absolute right-[20%] top-10 w-[30%] h-[100px]
-    border-t-2 border-r-2 rounded-tr-[50px] border-white/30" />
+        {/* 连接线 - 调整连接点位置 */}
+        <div className="absolute top-16 left-0 w-full h-full">
+          {/* 左侧弧形连接线 */}
+          <div className="absolute left-[17%] top-4 w-[33%] h-[100px]
+            border-t-2 border-l-2 rounded-tl-[50px] border-white/30" />
 
-  {/* 中间垂直连接线 */}
-  <div className="absolute left-1/2 -translate-x-1/2 top-10 w-[2px] h-[500px]
-    bg-gradient-to-b from-white via-white/50 to-white/30
-    shadow-[0_0_10px_rgba(255,255,255,0.3)]" />
+          {/* 右侧弧形连接线 */}
+          <div className="absolute right-[17%] top-4 w-[33%] h-[100px]
+            border-t-2 border-r-2 rounded-tr-[50px] border-white/30" />
 
-  {/* 装饰性光点 */}
-  <div className="absolute left-[20%] top-[108px] w-2 h-2 bg-white rounded-full 
-    shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
-  <div className="absolute right-[20%] top-[108px] w-2 h-2 bg-white rounded-full 
-    shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
-  <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-2 h-2 bg-white rounded-full 
-    shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
-</div>
+          {/* 中间垂直连接线 */}
+          <div className="absolute left-1/2 -translate-x-1/2 top-4 w-[2px] h-[500px]
+            bg-gradient-to-b from-white via-white/50 to-white/30
+            shadow-[0_0_10px_rgba(255,255,255,0.3)]" />
 
-        {/* 卡片布局 */}
+          {/* 装饰性光点 */}
+          <div className="absolute left-[20%] top-[102px] w-2 h-2 bg-white rounded-full 
+            shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
+          <div className="absolute right-[20%] top-[102px] w-2 h-2 bg-white rounded-full 
+            shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
+          <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-2 h-2 bg-white rounded-full 
+            shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
+        </div>
+
+        {/* 卡片布局保持不变 */}
         <div className="grid grid-cols-3 gap-20">
           <div className="flex justify-end">
             <PlanCard {...plans[0]} />
@@ -124,7 +114,6 @@ const SubscriptionPlans: React.FC = () => {
           </div>
         </div>
         
-        {/* 底部卡片 */}
         <div className="flex justify-center mt-32">
           <PlanCard {...plans[1]} />
         </div>

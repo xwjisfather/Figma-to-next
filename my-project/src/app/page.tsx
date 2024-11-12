@@ -7,7 +7,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import StockIndex from "@/components/StockIndex";
 import SubscriptionPlans from "@/components/SubscriptionPlans";
-import Services from "@/components/Services";
+import Fund from "@/components/Fund";
 import AboutUs from "@/components/AboutUs";
 import News from "@/components/News";
 import FAQ from "@/components/FAQ";
@@ -19,7 +19,7 @@ const LandingPage: React.FC = () => {
       <Header />
       <Hero />
       <StockIndex />
-      <Services />
+      <Fund />
       <AboutUs />
       <News />
       <FAQ />

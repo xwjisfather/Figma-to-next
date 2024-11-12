@@ -83,11 +83,11 @@ const SubscriptionPlans: React.FC = () => {
         {/* 连接线 - 调整连接点位置 */}
         <div className="absolute top-16 left-0 w-full h-full">
           {/* 左侧弧形连接线 */}
-          <div className="absolute left-[17%] top-4 w-[33%] h-[100px]
+          <div className="absolute left-[14%] top-4 w-[36%] h-[100px]
             border-t-2 border-l-2 rounded-tl-[50px] border-white/30" />
 
           {/* 右侧弧形连接线 */}
-          <div className="absolute right-[17%] top-4 w-[33%] h-[100px]
+          <div className="absolute right-[14%] top-4 w-[36%] h-[100px]
             border-t-2 border-r-2 rounded-tr-[50px] border-white/30" />
 
           {/* 中间垂直连接线 */}

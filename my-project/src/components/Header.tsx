@@ -1,21 +1,49 @@
 "use client"
 import React, { useState, useEffect } from "react";
+import { useAuth } from '../context/AuthContext';
+import Login from './Login';
+import Register from './Register';
 
 const Header: React.FC = () => {
+  const { isAuthenticated, logout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
+  const [showRegister, setShowRegister] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   const navItems = [
-    { label: "股票指数", href: "#stock" },
-    { label: "智富匯基金", href: "#fund" },
-    { label: "關於我們", href: "#about" },
-    { label: "新聞", href: "#news" },
-    { label: "訂閱計畫", href: "#subscription" },
-    { label: "聊天机器人", href: "#chatbot" },
+    { label: "股票指数", href: "#stock" , isExternal: false},
+    { label: "智富匯基金", href: "#fund" , isExternal: false },
+    { label: "關於我們", href: "#about" , isExternal: false},
+    { label: "新聞", href: "#news" , isExternal: false},
+    { label: "訂閱計畫", href: "#subscription" , isExternal: false},
+    { label: "聊天机器人", href: "https://tradingwithai.org/zh" , isExternal: true},
   ];
+
+    // 处理导航点击
+    const handleNavClick = (item: typeof navItems[0]) => {
+      if (item.isExternal) {
+        if (!isAuthenticated && item.href === "https://tradingwithai.org/zh") {
+          setShowLogin(true);
+          return;
+        }
+        window.open(item.href, '_blank', 'noopener,noreferrer');
+      } else {
+        scrollToSection(item.href.replace('#', ''));
+      }
+      setIsMenuOpen(false);
+    };
+
+    const handleAuthButtonClick = () => {
+      if (isAuthenticated) {
+        logout();
+      } else {
+        setShowLogin(true);
+      }
+    };
 
   // 添加滚动功能
   const scrollToSection = (sectionId: string) => {
@@ -34,6 +62,7 @@ const Header: React.FC = () => {
   };
 
   return (
+    <>
     <header className="relative w-full h-[200px] max-lg:h-[180px] max-md:h-[160px] max-sm:h-[140px] flex items-center">
       <div className="absolute inset-0 bg-gradient-to-r from-[#4D3589]/80 to-[#2D1857]/80 backdrop-blur-sm" />
       <img
@@ -61,7 +90,7 @@ const Header: React.FC = () => {
           {navItems.map((item, index) => (
             <a
               key={index}
-              onClick={() => scrollToSection(item.href.replace('#', ''))}
+              onClick={() => handleNavClick(item)}
               className="text-white/90 hover:text-white transition-colors duration-200 text-2xl max-lg:text-xl font-medium cursor-pointer"
             >
               {item.label}
@@ -81,8 +110,11 @@ const Header: React.FC = () => {
         </button>
 
         {/* 登录/注册按钮 */}
-        <button className="px-12 max-lg:px-10 max-md:px-8 max-sm:px-6 py-4 max-lg:py-3.5 max-md:py-3 max-sm:py-2.5 text-2xl max-lg:text-xl max-md:text-lg max-sm:text-base text-white/90 hover:text-white transition-colors duration-200 font-medium bg-white/10 rounded-full backdrop-blur-md hover:bg-white/20">
-          登錄/註冊
+        <button 
+          onClick={handleAuthButtonClick}
+          className="px-12 max-lg:px-10 max-md:px-8 max-sm:px-6 py-4 max-lg:py-3.5 max-md:py-3 max-sm:py-2.5 text-2xl max-lg:text-xl max-md:text-lg max-sm:text-base text-white/90 hover:text-white transition-colors duration-200 font-medium bg-white/10 rounded-full backdrop-blur-md hover:bg-white/20"
+        >
+          {isAuthenticated ? '退出登錄' : '登錄/註冊'}
         </button>
       </nav>
 
@@ -96,7 +128,7 @@ const Header: React.FC = () => {
             {navItems.map((item, index) => (
               <a
                 key={index}
-                onClick={() => scrollToSection(item.href.replace('#', ''))}
+                onClick={() => handleNavClick(item)}
                 className="px-8 py-4 text-lg text-white/90 hover:text-white hover:bg-white/10 transition-all duration-200 border-b border-white/10 last:border-b-0 cursor-pointer"
               >
                 {item.label}
@@ -114,6 +146,26 @@ const Header: React.FC = () => {
         />
       )}
     </header>
+    
+    {showLogin && (
+      <Login
+        onClose={() => setShowLogin(false)}
+        onSwitchToRegister={() => {
+          setShowLogin(false);
+          setShowRegister(true);
+        }}
+      />
+    )}
+    {showRegister && (
+      <Register
+        onClose={() => setShowRegister(false)}
+        onSwitchToLogin={() => {
+          setShowRegister(false);
+          setShowLogin(true);
+        }}
+      />
+    )}
+    </>
   );
 };
 

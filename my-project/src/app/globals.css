@@ -146,3 +146,28 @@ body {
 .border-glow {
   box-shadow: 0 0 10px rgba(108, 34, 189, 0.3);
 }
+
+@layer utilities {
+  .styled-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(59, 130, 246, 0.3) rgba(59, 130, 246, 0.1);
+  }
+
+  .styled-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .styled-scrollbar::-webkit-scrollbar-track {
+    background: rgba(59, 130, 246, 0.1);
+    border-radius: 2px;
+  }
+
+  .styled-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(59, 130, 246, 0.3);
+    border-radius: 2px;
+  }
+
+  .styled-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(59, 130, 246, 0.5);
+  }
+}

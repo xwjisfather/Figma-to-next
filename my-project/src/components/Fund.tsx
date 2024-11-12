@@ -1,6 +1,6 @@
 import React from "react";
 
-const Services: React.FC = () => {
+const Fund: React.FC = () => {
   return (
     <section
       id="fund"
@@ -35,4 +35,4 @@ const Services: React.FC = () => {
   );
 };
 
-export default Services;
+export default Fund;

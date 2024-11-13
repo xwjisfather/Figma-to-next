@@ -95,7 +95,7 @@ const Hero: React.FC = () => {
             <span className="font-normal">Empower</span>{" "}
             <span className="font-semibold">AI</span>{" "}
             <br />
-            <span className="font-semibold">technology</span>
+            <span className="font-semibold">Technology</span>
           </h1>
         {/* 箭头 */}
         <div className="absolute left-1/2 transform -translate-x-1/2 top-[420px] max-md:top-[325px] max-sm:top-[230px] z-[3]">

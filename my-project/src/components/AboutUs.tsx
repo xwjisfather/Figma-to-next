@@ -5,8 +5,7 @@ const AboutUs: React.FC = () => {
     <section 
       id="about"
       data-layername="關於我們" 
-      // 增加顶部间距，减少底部间距
-      className="flex flex-col mt-60 max-lg:mt-28 max-md:mt-24 max-sm:mt-20 w-full text-white max-w-[1140px] max-lg:max-w-[900px] max-md:max-w-[700px] max-sm:max-w-[95%] mx-auto"
+      className="flex flex-col mt-60 max-lg:mt-28 max-md:mt-24 max-sm:mt-20 w-full text-white max-w-[1140px] max-lg:max-w-[900px] max-md:max-w-[700px] max-sm:max-w-[95%] mx-auto relative"
     >
       <h2 
         data-layername="關於我們" 
@@ -16,14 +15,55 @@ const AboutUs: React.FC = () => {
       </h2>
       
       <div 
-        // 减少最小高度约束
         className="flex flex-col mt-24 max-lg:mt-20 max-md:mt-16 max-sm:mt-12 w-full min-h-[400px] max-lg:min-h-[350px] max-md:min-h-[300px] max-sm:min-h-[250px]"
       >
         <div 
-          className="flex flex-col w-full rounded-3xl"
+          className="flex flex-col w-full rounded-3xl relative"
         >
+          {/* 外层大光晕背景 */}
+          <div className="absolute -top-56 -bottom-64 -inset-32 -z-20">
+            <img
+              src="/Rectangle 93.svg"
+              className="w-full h-full object-cover"
+              alt=""
+              loading="lazy"
+              style={{
+                filter: 'blur(30px)',
+                opacity: 0.8
+              }}
+            />
+          </div>
+
+              {/* 额外的底部阴影加深层 */}
+              <div className="absolute -bottom-40 -left-32 -right-32 h-64 -z-20">
+            <img
+              src="/Rectangle 93.svg"
+              className="w-full h-full object-cover"
+              alt=""
+              loading="lazy"
+              style={{
+                filter: 'blur(40px)',
+                opacity: 0.8
+              }}
+            />
+          </div>
+
+          {/* 内层聚焦光晕背景 */}
+          <div className="absolute -inset-4 -z-10">
+            <img
+              src="/Rectangle 93.svg"
+              className="w-full h-full object-cover"
+              alt=""
+              loading="lazy"
+              style={{
+                filter: 'blur(15px)',
+                opacity: 0.8
+              }}
+            />
+          </div>
+
           <div 
-            className="flex flex-wrap gap-5 items-start p-10 max-lg:p-8 max-md:p-6 max-sm:p-4 w-full rounded-3xl bg-slate-950"
+            className="flex flex-wrap gap-5 items-start p-10 max-lg:p-8 max-md:p-6 max-sm:p-4 w-full rounded-3xl bg-[#0A051F]/95 relative z-10"
           >
             <div 
               className="flex flex-col flex-1 shrink basis-0 min-w-[240px]"
@@ -49,10 +89,6 @@ const AboutUs: React.FC = () => {
                 我们的使命是通过智能工具和洞察力为交易者提供支持，以便他们在股票市场做出明智的决策。我们努力简化复杂的金融数据，并为各个层次的交易者提供易于使用的界面。
               </p>
             </div>
-            
-            <div 
-              className="flex shrink-0 gap-2.5 h-[26px] w-[26px] max-lg:h-[22px] max-lg:w-[22px] max-md:h-[20px] max-md:w-[20px] max-sm:h-[18px] max-sm:w-[18px]" 
-            />
           </div>
         </div>
       </div>

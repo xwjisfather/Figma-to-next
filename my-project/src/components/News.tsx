@@ -78,27 +78,59 @@ const News: React.FC = () => {
     <section
     id="news"
     data-layername="testimonials"
-    className="flex flex-col items-center w-full text-center text-white relative py-20 px-4 min-h-[1000px] max-sm:min-h-[1000px]" // 添加最小高度
+    className="flex flex-col mt-60 items-center w-full text-center text-white relative py-20 px-4 min-h-[1000px] max-sm:min-h-[1000px]"
   >
-    
+    {/* 背景图片 */}
+    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 translate-y-1/5 w-full max-w-[1800px] z-0">
+      <img
+        src="/map.svg"
+        className="w-full h-full object-contain opacity-50"
+        alt="Background map"
+        loading="lazy"
+      />
+    </div>
 
-      {/* 背景图片 */}
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 translate-y-1/5 w-full max-w-[1800px]  z-0">
+    {/* 标题部分 - 延长阴影 */}
+    <div className="relative w-full">
+      {/* 外层大光晕背景 - 向下延伸 */}
+      <div className="absolute inset-x-0 -top-0 -bottom-32 -z-20">
         <img
-          src="/map.svg"
-          className="w-full h-full object-contain opacity-50"
-          alt="Background map"
+          src="/Rectangle 93.svg"
+          className="w-full h-full object-cover"
+          alt=""
           loading="lazy"
+          style={{
+            filter: 'blur(40px)',
+            opacity: 0.7
+          }}
         />
       </div>
 
-      {/* 内容层 */}
-      <h2
-        data-layername="最新新闻"
-        className="text-6xl max-lg:text-5xl max-md:text-4xl max-sm:text-3xl font-medium relative z-10"
-      >
-        最新新聞
-      </h2>
+      {/* 内层聚焦光晕背景 - 向下延伸 */}
+      <div className="absolute inset-x-0 -top-0 -bottom-32 -z-10">
+        <img
+          src="/Rectangle 93.svg"
+          className="w-full h-full object-cover"
+          alt=""
+          loading="lazy"
+          style={{
+            filter: 'blur(20px)',
+            opacity: 0.85
+          }}
+        />
+      </div>
+
+      {/* 标题容器 */}
+      <div className="py-12 relative z-10">
+        <h2
+          data-layername="最新新闻"
+          className="text-6xl max-lg:text-5xl max-md:text-4xl max-sm:text-3xl font-medium"
+        >
+          最新新聞
+        </h2>
+      </div>
+    </div>
+
       
       <div className="w-full max-w-[2200px] mx-auto px-4 overflow-hidden relative z-10">
         <div 

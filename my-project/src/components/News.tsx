@@ -76,12 +76,14 @@ const News: React.FC = () => {
 
   return (
     <section
-      id="news"
-      data-layername="testimonials"
-      className="flex flex-col items-center px-4 mt-96 max-lg:mt-72 max-md:mt-48 max-sm:mt-24 w-full text-center text-white relative"
-    >
+    id="news"
+    data-layername="testimonials"
+    className="flex flex-col items-center w-full text-center text-white relative py-20 px-4 min-h-[1000px] max-sm:min-h-[1000px]" // 添加最小高度
+  >
+    
+
       {/* 背景图片 */}
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 translate-y-1/5 w-full max-w-[1800px] z-0">
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 translate-y-1/5 w-full max-w-[1800px]  z-0">
         <img
           src="/map.svg"
           className="w-full h-full object-contain opacity-50"
@@ -95,13 +97,13 @@ const News: React.FC = () => {
         data-layername="最新新闻"
         className="text-6xl max-lg:text-5xl max-md:text-4xl max-sm:text-3xl font-medium relative z-10"
       >
-        最新新闻
+        最新新聞
       </h2>
       
       <div className="w-full max-w-[2200px] mx-auto px-4 overflow-hidden relative z-10">
         <div 
           ref={containerRef}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mt-32 max-lg:mt-24 max-md:mt-16 max-sm:mt-12 max-h-[800px] overflow-y-auto pr-2 sm:pr-4 styled-scrollbar"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mt-32 max-lg:mt-24 max-md:mt-16 max-sm:mt-12 max-h-[800px] max-md:max-h-[590px] overflow-y-auto pr-2 sm:pr-4 styled-scrollbar"
         >
           {news.map((item, index) => (
             <MotionArticle

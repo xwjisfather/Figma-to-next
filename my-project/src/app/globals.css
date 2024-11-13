@@ -171,3 +171,32 @@ body {
     background: rgba(59, 130, 246, 0.5);
   }
 }
+
+@media (max-width: 768px) {
+  body {
+    background: linear-gradient(
+          to bottom right,
+          var(--background-start) 0%,
+          var(--background-end) 46%
+        )
+        bottom right / 100% 100% no-repeat,
+      linear-gradient(
+          to bottom left,
+          var(--background-start) 0%,
+          var(--background-end) 46%
+        )
+        bottom left / 100% 100% no-repeat,
+      linear-gradient(
+          to top left,
+          var(--background-start) 0%,
+          var(--background-end) 46%
+        )
+        top left / 100% 100% no-repeat,
+      linear-gradient(
+          to top right,
+          var(--background-start) 0%,
+          var(--background-end) 46%
+        )
+        top right / 100% 100% no-repeat;
+  }
+}

@@ -59,12 +59,12 @@ const FAQ: React.FC = () => {
   
         {/* 标题容器 */}
         <div className="py-12 relative z-10">
-          <h2
-            data-layername="問ai"
-            className="max-w-full text-6xl max-lg:text-5xl max-md:text-4xl max-sm:text-3xl text-center text-white w-[693px] max-lg:w-[600px] max-md:w-[500px] max-sm:w-[95%] mx-auto"
+        <h2
+          data-layername="問ai"
+          className="max-w-full text-6xl max-lg:text-5xl max-md:text-4xl max-sm:text-3xl text-center w-[693px] max-lg:w-[600px] max-md:w-[500px] max-sm:w-[95%] mx-auto font-noto-sans font-medium bg-gradient-to-b from-white/90 via-white/70 to-white/40 bg-clip-text text-transparent"
           >
-            問AI
-          </h2>
+          問AI
+        </h2>
         </div>
       </div>
   

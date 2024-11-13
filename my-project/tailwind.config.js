@@ -10,6 +10,7 @@ module.exports = {
     extend: {
       fontFamily: {
         marcellus: ['Marcellus', 'serif'],
+        'noto-sans': ['"Noto Sans HK"', 'sans-serif'],
       },
     },
   },

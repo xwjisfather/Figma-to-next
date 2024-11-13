@@ -52,9 +52,11 @@ const Footer: React.FC = () => {
         {/* Join Section */}
         <div className="w-[454px] min-w-[240px] max-md:w-full">
           <div className="flex flex-col min-h-[155px] max-md:min-h-[130px] max-sm:min-h-[110px]">
-            <h3 className="py-0.5 text-3xl max-lg:text-2xl max-md:text-xl max-sm:text-lg font-semibold text-white w-[347px] max-md:w-full">
-              加入<br />智富匯
-            </h3>
+            <h3
+              className="py-0.5 text-3xl max-lg:text-2xl max-md:text-xl max-sm:text-lg font-semibold w-[347px] max-md:w-full font-noto-sans bg-gradient-to-b from-white/90 via-white/70 to-white/40 bg-clip-text text-transparent"
+              >
+            加入<br />智富匯
+          </h3>
             <form className="flex gap-10 max-md:gap-6 max-sm:gap-4 mt-6 max-sm:mt-4 pl-5 text-lg max-md:text-base max-sm:text-sm font-medium text-white border border-solid border-slate-500 rounded-[99px]">
               <input
                 type="email"

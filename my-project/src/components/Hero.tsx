@@ -68,21 +68,35 @@ const Hero: React.FC = () => {
           </div>
         </div>
 
-        {/* 深色半圆弧 */}
-        <div className="absolute top-0 left-0 right-0 h-[450px] max-md:h-[350px] max-sm:h-[250px] bg-[#1E1332]/90 rounded-b-[50%] z-[1]">
-          {/* 圆弧边缘发光效果 */}
-          <div className="absolute -bottom-8 left-0 right-0 h-[40px] max-md:h-[30px] max-sm:h-[20px] blur-[20px] rounded-full bg-[#8B5CF6]/30" />
-        </div>
+{/* 深色半圆弧及其发光效果 */}
+<div className="absolute top-0 left-0 right-0 h-[450px] max-md:h-[350px] max-sm:h-[250px] bg-[#1E1332]/90 rounded-b-[50%] z-[1] overflow-visible">
+  {/* 第一层发光弧线 - 最亮的内层白光 */}
+  <div className="absolute bottom-0 left-0 right-0 h-[450px] max-md:h-[350px] max-sm:h-[250px] rounded-b-[50%] border-b-[2px] border-white/40 blur-[3px]" />
+  
+  {/* 第二层发光弧线 - 明亮的中间层 */}
+  <div className="absolute -bottom-[2px] left-0 right-0 h-[450px] max-md:h-[350px] max-sm:h-[250px] rounded-b-[50%] border-b-[4px] border-[#A89EFF]/50 blur-[8px]" />
+  
+  {/* 第三层发光弧线 - 更大范围的光晕 */}
+  <div className="absolute -bottom-[4px] left-0 right-0 h-[450px] max-md:h-[350px] max-sm:h-[250px] rounded-b-[50%] border-b-[3px] border-[#8B5CF6]/40 blur-[15px]" />
+  
+  {/* 添加第四层 - 最外层的柔和光晕 */}
+  <div className="absolute -bottom-[6px] left-0 right-0 h-[450px] max-md:h-[350px] max-sm:h-[250px] rounded-b-[50%] border-b-[4px] border-white/15 blur-[20px]" />
+</div>
         
         {/* 标题 */}
-        <h1
-          data-layername="headline"
-          className="relative z-[2] self-center mt-[150px] max-lg:mt-[120px] max-md:mt-[100px] max-sm:mt-[80px] mb-0 w-full text-8xl max-lg:text-7xl max-md:text-6xl max-sm:text-4xl text-center max-w-[1100px] max-lg:max-w-[900px] max-md:max-w-[600px] max-sm:max-w-[90%] max-md:mb-2.5"
-        >
-          Empower <span className="font-semibold">AI</span>{" "}
-          <span className="font-semibold">technology</span>
-        </h1>
-
+                  <h1
+            data-layername="headline"
+            className="relative z-[2] self-center mt-[80px] max-lg:mt-[90px] max-md:mt-[80px] max-sm:mt-[60px] mb-0 
+              w-full text-8xl max-lg:text-7xl max-md:text-6xl max-sm:text-4xl text-center 
+              max-w-[1100px] max-lg:max-w-[900px] max-md:max-w-[600px] max-sm:max-w-[90%] max-md:mb-2.5
+              font-noto-sans bg-gradient-to-b from-[#FFFFFF] to-[#9088A8] bg-clip-text text-transparent
+              leading-[1.3] max-lg:leading-[1.3] max-md:leading-[1.3] max-sm:leading-[1.3]"
+          >
+            <span className="font-normal">Empower</span>{" "}
+            <span className="font-semibold">AI</span>{" "}
+            <br />
+            <span className="font-semibold">technology</span>
+          </h1>
         {/* 箭头 */}
         <div className="absolute left-1/2 transform -translate-x-1/2 top-[420px] max-md:top-[325px] max-sm:top-[230px] z-[3]">
           <img

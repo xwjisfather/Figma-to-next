@@ -6,7 +6,7 @@ const Footer: React.FC = () => {
       <img
         loading="lazy"
         src="https://cdn.builder.io/api/v1/image/assets/TEMP/c26ea3463d22b20b405f75f19dc6a78780219df7acb199b550a95e8a8b0d067e?placeholderIfAbsent=true&apiKey=63de7e29674842c29a93babaf5f1d67a"
-        className="object-cover absolute inset-0 size-full"
+        className="object-cover absolute inset-0 size-full object-[center_75%]"
         alt=""
       />
 

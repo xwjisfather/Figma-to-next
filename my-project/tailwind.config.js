@@ -11,7 +11,7 @@ module.exports = {
       fontFamily: {
         marcellus: ['Marcellus', 'serif'],
         'noto-sans': ['"Noto Sans HK"', 'sans-serif'],
-      },
+      }
     },
   },
   plugins: [],

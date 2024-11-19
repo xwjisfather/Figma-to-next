@@ -1,5 +1,5 @@
 "use client"
-import { motion } from 'framer-motion';
+import { motion, useAnimationControls } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 interface FundCard {
@@ -63,6 +63,7 @@ const FundCardComponent: React.FC<{
   const calculatePosition = () => {
     const angle = ((index - active) * 2 * Math.PI) / 6;
     const radius = 450; // 增加旋转半径
+
     
     return {
       x: radius * Math.sin(angle) - 50, // 向左偏移50px
@@ -71,7 +72,7 @@ const FundCardComponent: React.FC<{
     };
   };
 
-  const { x, z, rotateY } = calculatePosition();
+  const { x, z,  rotateY } = calculatePosition();
   
   return (
     <motion.div
@@ -91,8 +92,7 @@ const FundCardComponent: React.FC<{
         width: "380px",
         height: "480px",
         transformOrigin: "center",
-        perspective: "1000px",
-        transform: `translate(-50%, -50%)`,
+        // transform: `translate(-50%, -50%)`,
       }}
     >
       <div
@@ -146,6 +146,7 @@ const FundCardComponent: React.FC<{
 
 const Fund: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const containerRotation = useAnimationControls();
   
   useEffect(() => {
     const interval = setInterval(() => {
@@ -153,6 +154,20 @@ const Fund: React.FC = () => {
     }, 3000);
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    containerRotation.start({
+      transform: [
+      'perspective(2500px) rotateX(-8deg) rotateY(0deg)',
+      'perspective(2500px) rotateX(-8deg) rotateY(360deg)'
+      ],
+      transition: {
+        duration: 18,
+        ease: "linear",
+        repeat: Infinity
+      }
+    });
+  }, [containerRotation]);
 
   return (
     <section
@@ -167,13 +182,14 @@ const Fund: React.FC = () => {
         智富匯基金
       </h2>
 
-      <div className="relative mt-8 max-lg:mt-6 max-md:mt-4 max-sm:mt-2 h-[900px] w-screen -mx-[calc((100vw-100%)/2)]">
+      {/* <div className="relative mt-8 max-lg:mt-6 max-md:mt-4 max-sm:mt-2 h-[900px] w-screen -mx-[calc((100vw-100%)/2)]"> */}
+      <div className="relative mt-8 max-lg:mt-6 max-md:mt-4 max-sm:mt-2 h-[900px] w-full">
         {/* 背景图层 */}
         <div className="absolute inset-0 overflow-hidden">
           <img
             loading="lazy"
             src="/Fundgrid.svg"
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[100%] object-cover"
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[90%] object-cover object-[center_80%]"
             alt="background grid"
           />
           {/* 渐变遮罩 */}
@@ -181,24 +197,28 @@ const Fund: React.FC = () => {
         </div>
 
         {/* 内容容器 */}
-        <div className="relative max-w-[1440px] mx-auto px-4 h-full -mt-48">
+        <div className="relative max-w-[1440px] mx-auto px-4 w-full h-full -mt-48">
+        <div className="relative w-full h-full"> {/* 调整这个值来控制整体左右位置 */}
           {/* 3D展示区域 */}
-          <div 
-            className="relative w-full h-full flex items-center justify-center -mt-32 -translate-x-[8%]"
-            style={{ 
-              perspective: "2500px",
-              transformStyle: "preserve-3d"
-            }}
-          >
-            {fundCards.map((card, index) => (
-              <FundCardComponent
-                key={card.id}
-                data={card}
-                index={index}
-                active={activeIndex}
-              />
-            ))}
-          </div>
+          <motion.div 
+        animate={containerRotation}
+        className="relative w-full h-full flex items-center justify-center -mt-32 "
+        style={{ 
+          transformStyle: "preserve-3d",
+          transform: 'perspective(2500px) rotateX(-8deg) ',
+          transformOrigin: 'center center'
+        }}
+      >
+        {fundCards.map((card, index) => (
+          <FundCardComponent
+            key={card.id}
+            data={card}
+            index={index}
+            active={activeIndex}
+          />
+        ))}
+      </motion.div>
+      </div>
 
           {/* 控制按钮容器 */}
           <div className="absolute w-full top-1/2 -translate-y-1/2 flex justify-between top-[60%]  z-20">

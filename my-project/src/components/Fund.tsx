@@ -75,7 +75,7 @@ const FundCardComponent: React.FC<{
 
   return (
     <motion.div
-      className="absolute left-[40%] top-1/2"
+      className="absolute left-[42%] top-1/2"
       animate={{
         x,
         z,

@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 :root {
   --background-start: #AED2FD;
   --background-end: #4D3589;
@@ -15,7 +16,7 @@ body {
               linear-gradient(to top left, var(--background-start) 0%, var(--background-end) 46%) top left / 50% 50% no-repeat,
               linear-gradient(to top right, var(--background-start) 0%, var(--background-end) 46%) top right / 50% 50% no-repeat;
   min-height: 100vh;
-  color: white;
+  color: rgb(255, 255, 255);
 }
 
 
@@ -203,3 +204,41 @@ body {
 
 @import url('https://fonts.googleapis.com/css2?family=Marcellus&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@400;600&display=swap');
+
+.fund-card-glass {
+  background: linear-gradient(
+    135deg,
+    rgba(45, 24, 87, 0.85) 0%,
+    rgba(45, 24, 87, 0.75) 100%
+  );
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 8px 32px 0 rgba(31, 38, 135, 0.3),
+    0 4px 8px rgba(0, 0, 0, 0.1);
+  transform-style: preserve-3d;
+}
+
+.fund-card {
+  transition: all 0.8s cubic-bezier(0.43, 0.13, 0.23, 0.96);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+}
+
+.fund-card-decorator {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(255, 255, 255, 0.06) 100%
+  );
+}
+
+@keyframes carousel-spin {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
